@@ -40,11 +40,14 @@
                 <button id="restartBtn">Play Again</button>
             </div>
         </div>
-        <div class="controls">
-            <p><strong>Desktop Controls:</strong></p>
-            <p>← → : Move | ↓ : Soft Drop | ↑ : Rotate</p>
-            <p>SPACE : Hard Drop | P : Pause</p>
-            <p><strong>Mobile:</strong> Tap to rotate, Swipe left/right to move, Swipe down to drop</p>
+        <div class="controls-container">
+            <button id="toggleControls" class="toggle-btn">Show Controls</button>
+            <div class="controls hidden">
+                <p><strong>Desktop Controls:</strong></p>
+                <p>← → : Move | ↓ : Soft Drop | ↑ : Rotate</p>
+                <p>SPACE : Hard Drop | P : Pause</p>
+                <p><strong>Mobile:</strong> Tap to rotate, Swipe left/right to move, Swipe down to drop</p>
+            </div>
         </div>
     </div>
     <script src="game.js"></script>

@@ -356,6 +356,20 @@ document.addEventListener('keydown', (e) => {
 document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('restartBtn').addEventListener('click', startGame);
 
+// Toggle controls visibility
+document.getElementById('toggleControls').addEventListener('click', function() {
+    const controls = document.querySelector('.controls');
+    const isHidden = controls.classList.contains('hidden');
+
+    if (isHidden) {
+        controls.classList.remove('hidden');
+        this.textContent = 'Hide Controls';
+    } else {
+        controls.classList.add('hidden');
+        this.textContent = 'Show Controls';
+    }
+});
+
 // Touch controls for mobile
 let touchStartX = 0;
 let touchStartY = 0;
