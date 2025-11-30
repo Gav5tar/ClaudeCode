@@ -7,12 +7,10 @@
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    background-attachment: fixed;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px;
+    min-height: 100vh;
 }
 
 .container {
@@ -24,6 +22,8 @@ body {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .game-info {
