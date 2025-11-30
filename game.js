@@ -362,14 +362,6 @@ let touchStartY = 0;
 let touchStartTime = 0;
 const SWIPE_THRESHOLD = 30;
 const TAP_THRESHOLD = 200;
-const debugDiv = document.getElementById('debugInfo');
-
-function debugLog(msg) {
-    console.log(msg);
-    if (debugDiv) {
-        debugDiv.innerHTML = msg + '<br>' + debugDiv.innerHTML.split('<br>').slice(0, 10).join('<br>');
-    }
-}
 
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -377,7 +369,6 @@ canvas.addEventListener('touchstart', (e) => {
     touchStartX = touch.clientX;
     touchStartY = touch.clientY;
     touchStartTime = Date.now();
-    debugLog('Touch start: ' + touchStartX + ', ' + touchStartY);
 }, { passive: false });
 
 canvas.addEventListener('touchmove', (e) => {
@@ -387,12 +378,7 @@ canvas.addEventListener('touchmove', (e) => {
 canvas.addEventListener('touchend', (e) => {
     e.preventDefault();
 
-    debugLog('Touch end detected');
-
-    if (isGameOver || !currentPiece || isPaused) {
-        debugLog('Blocked: gameOver=' + isGameOver + ' noPiece=' + !currentPiece + ' paused=' + isPaused);
-        return;
-    }
+    if (isGameOver || !currentPiece || isPaused) return;
 
     const touch = e.changedTouches[0];
     const touchEndX = touch.clientX;
@@ -406,11 +392,8 @@ canvas.addEventListener('touchend', (e) => {
     const absX = Math.abs(deltaX);
     const absY = Math.abs(deltaY);
 
-    debugLog('Delta: dx=' + deltaX + ' dy=' + deltaY + ' t=' + deltaTime);
-
     // Check for tap (rotation)
     if (absX < SWIPE_THRESHOLD && absY < SWIPE_THRESHOLD && deltaTime < TAP_THRESHOLD) {
-        debugLog('TAP - rotating');
         currentPiece.rotate();
         draw();
         return;
@@ -420,17 +403,14 @@ canvas.addEventListener('touchend', (e) => {
     if (absX > absY && absX > SWIPE_THRESHOLD) {
         // Horizontal swipe
         if (deltaX > 0) {
-            debugLog('SWIPE RIGHT');
             currentPiece.move(1, 0);
         } else {
-            debugLog('SWIPE LEFT');
             currentPiece.move(-1, 0);
         }
         draw();
     } else if (absY > absX && absY > SWIPE_THRESHOLD) {
         // Vertical swipe
         if (deltaY > 0) {
-            debugLog('SWIPE DOWN');
             hardDrop();
         }
     }
