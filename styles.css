@@ -118,7 +118,6 @@ button:active {
 
 .game-area {
     position: relative;
-    touch-action: none;
 }
 
 .debug-info {
