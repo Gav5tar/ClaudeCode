@@ -55,14 +55,23 @@ body {
     padding: 15px;
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-around;
 }
 
 .score-section, .level-section, .lines-section {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 5px;
+}
+
+.score-section p:first-child,
+.level-section p:first-child,
+.lines-section p:first-child {
+    font-size: 0.9em;
+    opacity: 0.8;
 }
 
 .score-section p:last-child,
@@ -96,10 +105,11 @@ body {
 }
 
 .toggle-btn {
-    width: auto;
+    width: auto !important;
     padding: 10px 20px;
     font-size: 0.9em;
     margin-bottom: 10px;
+    display: inline-block;
 }
 
 .controls {
