@@ -171,4 +171,14 @@ button:active {
         width: 100%;
         max-width: 300px;
     }
+
+    #gameCanvas {
+        margin: 20px 0;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .game-area {
+        margin-bottom: 30px;
+    }
 }
