@@ -15,7 +15,8 @@ body {
 
 .container {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 20px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -26,18 +27,27 @@ body {
     margin: 0 auto;
 }
 
-.game-info {
+.game-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     gap: 20px;
-    min-width: 200px;
 }
 
-.game-info h1 {
+.game-header h1 {
     text-align: center;
     font-size: 2.5em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 3px;
+    margin: 0;
+    flex: 1;
+}
+
+.game-stats {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .info-panel {
@@ -118,6 +128,8 @@ button:active {
 
 .game-area {
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 #gameCanvas {
@@ -162,14 +174,17 @@ button:active {
 }
 
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
+    .controls {
+        display: none;
     }
 
-    .game-info {
-        width: 100%;
-        max-width: 300px;
+    .game-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .game-header h1 {
+        font-size: 2em;
     }
 
     #gameCanvas {
@@ -177,7 +192,13 @@ button:active {
         height: auto;
     }
 
-    .game-area {
-        margin-bottom: 20px;
+    .game-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-panel, .next-piece {
+        width: 100%;
+        max-width: 300px;
     }
 }

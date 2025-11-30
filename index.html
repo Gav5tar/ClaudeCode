@@ -8,16 +8,11 @@
 </head>
 <body>
     <div class="container">
-        <div class="game-area">
-            <canvas id="gameCanvas" width="300" height="600"></canvas>
-            <div id="gameOver" class="game-over hidden">
-                <h2>Game Over!</h2>
-                <p>Final Score: <span id="finalScore">0</span></p>
-                <button id="restartBtn">Play Again</button>
-            </div>
-        </div>
-        <div class="game-info">
+        <div class="game-header">
             <h1>TETRIS</h1>
+            <button id="startBtn">Start Game</button>
+        </div>
+        <div class="game-stats">
             <div class="info-panel">
                 <div class="score-section">
                     <p>Score</p>
@@ -36,15 +31,20 @@
                 <p>Next Piece</p>
                 <canvas id="nextCanvas" width="120" height="120"></canvas>
             </div>
-            <div class="controls">
-                <p><strong>Controls:</strong></p>
-                <p>← → : Move</p>
-                <p>↓ : Soft Drop</p>
-                <p>↑ : Rotate</p>
-                <p>SPACE : Hard Drop</p>
-                <p>P : Pause</p>
+        </div>
+        <div class="game-area">
+            <canvas id="gameCanvas" width="300" height="600"></canvas>
+            <div id="gameOver" class="game-over hidden">
+                <h2>Game Over!</h2>
+                <p>Final Score: <span id="finalScore">0</span></p>
+                <button id="restartBtn">Play Again</button>
             </div>
-            <button id="startBtn">Start Game</button>
+        </div>
+        <div class="controls">
+            <p><strong>Desktop Controls:</strong></p>
+            <p>← → : Move | ↓ : Soft Drop | ↑ : Rotate</p>
+            <p>SPACE : Hard Drop | P : Pause</p>
+            <p><strong>Mobile:</strong> Tap to rotate, Swipe left/right to move, Swipe down to drop</p>
         </div>
     </div>
     <script src="game.js"></script>
