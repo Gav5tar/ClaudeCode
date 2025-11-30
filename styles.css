@@ -12,6 +12,8 @@ body {
     align-items: center;
     min-height: 100vh;
     color: #fff;
+    overflow: hidden;
+    touch-action: pan-x pan-y;
 }
 
 .container {
@@ -117,6 +119,7 @@ button:active {
 
 .game-area {
     position: relative;
+    touch-action: none;
 }
 
 #gameCanvas {
@@ -124,6 +127,9 @@ button:active {
     border-radius: 10px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     display: block;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .game-over {
