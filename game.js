@@ -356,5 +356,68 @@ document.addEventListener('keydown', (e) => {
 document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('restartBtn').addEventListener('click', startGame);
 
+// Touch controls for mobile
+let touchStartX = 0;
+let touchStartY = 0;
+let touchStartTime = 0;
+const SWIPE_THRESHOLD = 30;
+const TAP_THRESHOLD = 200;
+
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    touchStartTime = Date.now();
+}, { passive: false });
+
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+
+    if (isGameOver || !currentPiece || isPaused) return;
+
+    const touch = e.changedTouches[0];
+    const touchEndX = touch.clientX;
+    const touchEndY = touch.clientY;
+    const touchEndTime = Date.now();
+
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const deltaTime = touchEndTime - touchStartTime;
+
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    // Check for tap (rotation)
+    if (absX < SWIPE_THRESHOLD && absY < SWIPE_THRESHOLD && deltaTime < TAP_THRESHOLD) {
+        currentPiece.rotate();
+        draw();
+        return;
+    }
+
+    // Swipe detection
+    if (absX > absY && absX > SWIPE_THRESHOLD) {
+        // Horizontal swipe
+        if (deltaX > 0) {
+            // Swipe right
+            currentPiece.move(1, 0);
+        } else {
+            // Swipe left
+            currentPiece.move(-1, 0);
+        }
+        draw();
+    } else if (absY > absX && absY > SWIPE_THRESHOLD) {
+        // Vertical swipe
+        if (deltaY > 0) {
+            // Swipe down - hard drop
+            hardDrop();
+        }
+    }
+}, { passive: false });
+
 initBoard();
 draw();
