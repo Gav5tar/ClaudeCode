@@ -8,6 +8,14 @@
 </head>
 <body>
     <div class="container">
+        <div class="game-area">
+            <canvas id="gameCanvas" width="300" height="600"></canvas>
+            <div id="gameOver" class="game-over hidden">
+                <h2>Game Over!</h2>
+                <p>Final Score: <span id="finalScore">0</span></p>
+                <button id="restartBtn">Play Again</button>
+            </div>
+        </div>
         <div class="game-info">
             <h1>TETRIS</h1>
             <div class="info-panel">
@@ -37,14 +45,6 @@
                 <p>P : Pause</p>
             </div>
             <button id="startBtn">Start Game</button>
-        </div>
-        <div class="game-area">
-            <canvas id="gameCanvas" width="300" height="600"></canvas>
-            <div id="gameOver" class="game-over hidden">
-                <h2>Game Over!</h2>
-                <p>Final Score: <span id="finalScore">0</span></p>
-                <button id="restartBtn">Play Again</button>
-            </div>
         </div>
     </div>
     <script src="game.js"></script>
