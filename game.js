@@ -369,6 +369,7 @@ canvas.addEventListener('touchstart', (e) => {
     touchStartX = touch.clientX;
     touchStartY = touch.clientY;
     touchStartTime = Date.now();
+    console.log('Touch start:', touchStartX, touchStartY);
 }, { passive: false });
 
 canvas.addEventListener('touchmove', (e) => {
@@ -378,7 +379,12 @@ canvas.addEventListener('touchmove', (e) => {
 canvas.addEventListener('touchend', (e) => {
     e.preventDefault();
 
-    if (isGameOver || !currentPiece || isPaused) return;
+    console.log('Touch end detected');
+
+    if (isGameOver || !currentPiece || isPaused) {
+        console.log('Game state:', { isGameOver, hasPiece: !!currentPiece, isPaused });
+        return;
+    }
 
     const touch = e.changedTouches[0];
     const touchEndX = touch.clientX;
@@ -392,8 +398,11 @@ canvas.addEventListener('touchend', (e) => {
     const absX = Math.abs(deltaX);
     const absY = Math.abs(deltaY);
 
+    console.log('Delta:', { deltaX, deltaY, deltaTime, absX, absY });
+
     // Check for tap (rotation)
     if (absX < SWIPE_THRESHOLD && absY < SWIPE_THRESHOLD && deltaTime < TAP_THRESHOLD) {
+        console.log('TAP detected - rotating');
         currentPiece.rotate();
         draw();
         return;
@@ -403,17 +412,17 @@ canvas.addEventListener('touchend', (e) => {
     if (absX > absY && absX > SWIPE_THRESHOLD) {
         // Horizontal swipe
         if (deltaX > 0) {
-            // Swipe right
+            console.log('SWIPE RIGHT');
             currentPiece.move(1, 0);
         } else {
-            // Swipe left
+            console.log('SWIPE LEFT');
             currentPiece.move(-1, 0);
         }
         draw();
     } else if (absY > absX && absY > SWIPE_THRESHOLD) {
         // Vertical swipe
         if (deltaY > 0) {
-            // Swipe down - hard drop
+            console.log('SWIPE DOWN - hard drop');
             hardDrop();
         }
     }
